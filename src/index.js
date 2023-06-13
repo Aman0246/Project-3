@@ -7,13 +7,11 @@ const {default : mongoose}  = require('mongoose');
 const app = express()
 
 
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(express.json())
 
 
-mongoose.connect(process.env.String, {
-useNewUrlParser: true 
-}).then(()=> {
+
+mongoose.connect(process.env.MONGOCONNECT).then(()=> {
     console.log("MongoDB is Connected");
 
 }).catch((err) => {

@@ -33,7 +33,7 @@ const collegeDetails=async(req,res)=>{
 
           res.status(200).send({status:true,message:"the Data",data:response})
     } catch (error) {
-        res.status(400).send({status:false,message:error.message})     
+        res.status(404).send({status:false,message:error.message})     
     }
 }
 

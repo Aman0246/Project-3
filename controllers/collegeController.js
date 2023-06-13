@@ -22,6 +22,7 @@ const collegeDetails=async(req,res)=>{
        if(!filter)return  res.status(404).send({status:false,message:"filter by collegeName"})
        
         const collegeDetails =await CollegeModel.findOne({name:filter})
+        if(!collegeDetails)return res.status(404).send({status:false,message:"detail not found"})
        const interns =await InternModel.find({collegeId:collegeDetails._id}).select({collegeId:0,isDeleted:0})
 
         const response = {

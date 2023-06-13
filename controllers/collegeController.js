@@ -4,6 +4,7 @@ const {InternModel}=require("../Models/InternModel")
 const createcolleges=async(req,res)=>{
     let {name,fullName,logoLink}=req.body
     try {
+        if(!name||!fullName||!logoLink) return res.status(400).send({status:false,message:"field empty"})
      const group=await CollegeModel.create({name,fullName,logoLink})
      const samedata=await CollegeModel.findOne({name})
      if(samedata)return res.status(400).send({status:false,message:"collage alredy exist"})

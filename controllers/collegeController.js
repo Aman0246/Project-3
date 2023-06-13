@@ -19,12 +19,13 @@ const collegeDetails=async(req,res)=>{
        let filter=req.query.collegeName
        if(!filter)return  res.status(400).send({status:false,message:"filter by collegeName"})
        
-       const collegeDetail =await CollegeModel.findOne({name:filter}).select({_id:0,isDeleted:0})
-       const collegeDetails =await CollegeModel.findOne({name:filter})
+        const collegeDetails =await CollegeModel.findOne({name:filter})
        const interns =await InternModel.find({collegeId:collegeDetails._id}).select({collegeId:0,isDeleted:0})
 
         const response = {
-            collegeDetail,
+            name:collegeDetails.name,
+            fullName:collegeDetails.fullName,
+            logoLink:collegeDetails.logoLink,
             interns: interns
           };
 

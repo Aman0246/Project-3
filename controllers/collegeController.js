@@ -5,6 +5,8 @@ const createcolleges=async(req,res)=>{
     let {name,fullName,logoLink}=req.body
     try {
      const group=await CollegeModel.create({name,fullName,logoLink})
+     const samedata=await CollegeModel.findOne({name})
+     if(samedata)return res.status(400).send({status:false,message:"collage alredy exist"})
         res.status(201).send({status:true,message:"group",data:group})
   
     } catch (error) {
